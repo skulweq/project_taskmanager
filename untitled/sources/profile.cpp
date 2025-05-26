@@ -2,9 +2,8 @@
 #include "ui_profile.h"
 #include "form.h"
 
-profile::profile(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::profile)
+profile::profile(Form *form, QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::profile), form(form)  // Сохраняем переданный form
 {
     ui->setupUi(this);
 }
@@ -16,6 +15,8 @@ profile::~profile()
 
 void profile::on_pushButton_3_clicked()
 {
-    form->show();
-    this->hide();
+    if (form) {
+        form->show();
+        this->hide();
+    }
 }
