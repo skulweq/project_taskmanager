@@ -14,7 +14,7 @@ class profile : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit profile(QWidget *parent = nullptr);
+    explicit profile(Form *form = nullptr, QWidget *parent = nullptr);  // Добавляем Form*
     ~profile();
 
 private slots:
