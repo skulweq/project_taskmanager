@@ -7,6 +7,7 @@ registration::registration(QWidget *parent)
     , ui(new Ui::registration)
 {
     ui->setupUi(this);
+    mainwindow = new MainWindow();
 }
 
 registration::~registration()
