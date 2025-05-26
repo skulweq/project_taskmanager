@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class profile;
+class MainWindow2;
 
 namespace Ui {
 class Form;
@@ -20,9 +21,12 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::Form *ui;
     profile *profile;
+    MainWindow2 *mainwindow2;
 
 signals:
     void openProfile();  // Сигнал для открытия профиля
