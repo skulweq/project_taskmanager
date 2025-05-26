@@ -23,6 +23,9 @@ private slots:
 private:
     Ui::Form *ui;
     profile *profile;
+
+signals:
+    void openProfile();  // Сигнал для открытия профиля
 };
 
 #endif // FORM_H
