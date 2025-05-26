@@ -3,11 +3,10 @@
 #include "ui_form.h"
 
 Form::Form(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Form)
+    : QWidget(parent), ui(new Ui::Form)
 {
     ui->setupUi(this);
-    profile = new class profile(this);
+    profile = new class profile(this);  // Передаём this (Form) в profile
 }
 
 Form::~Form()
