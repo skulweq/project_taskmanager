@@ -5,11 +5,9 @@
 
 class Form;
 
-QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow2;
 }
-QT_END_NAMESPACE
 
 class MainWindow2 : public QMainWindow
 {
@@ -24,7 +22,7 @@ private slots:
 
 private:
     Ui::MainWindow2 *ui;
-    Form *form;
+    Form *form = nullptr;
 };
 
 #endif // MAINWINDOW2_H
