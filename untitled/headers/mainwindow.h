@@ -1,8 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "registration.h"
 #include <QMainWindow>
-#include <mainwindow2.h>
+
+class MainWindow2;
+class registration;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,13 +20,15 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void switchToPage(QWidget *newPage);
 
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
-    MainWindow2 mainwindow2;
+    MainWindow2 *mainwindow2;
+    registration *registration;
 };
 #endif // MAINWINDOW_H
