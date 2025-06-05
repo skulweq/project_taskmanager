@@ -13,14 +13,15 @@ MainWindow2::MainWindow2(QWidget *parent)
 MainWindow2::~MainWindow2()
 {
     delete ui;
+    if (form) delete form;
+
 }
 
-void MainWindow2::on_pushButton_3_clicked()
+void MainWindow2::on_pushButton_2_clicked()
 {
     if (!form) {
-        form = new Form(this);  // Указываем родителя
+        form = new Form();
     }
     form->show();
-    this->hide();  // Скрываем, но не удаляем
+    this->hide();
 }
-
