@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW2_H
 #define MAINWINDOW2_H
 
+#include "task.h"
 #include <QMainWindow>
 
 class Form;
@@ -17,12 +18,21 @@ public:
     explicit MainWindow2(QWidget *parent = nullptr);
     ~MainWindow2();
 
+    void loadTasks();
+    void saveTasks();
+    void displayTasks();
+
+
 private slots:
-    void on_pushButton_3_clicked();
+    void on_pushButton_2_clicked();
+    void handleTaskCreated(const QString &title, const QString &description);
 
 private:
     Ui::MainWindow2 *ui;
     Form *form = nullptr;
+    QList<Task> m_tasks;
+    QString m_tasksFile = "task2.txt";
+
 };
 
 #endif // MAINWINDOW2_H
