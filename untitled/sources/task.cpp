@@ -13,8 +13,8 @@ QString Task::toString() const {
 
 Task Task::fromString(const QString &str) {
     QStringList parts = str.split("|");
-    if (parts.size() >= 3) {
-        return Task(parts[0], parts[1]);
+    if (parts.size() >= 2) {
+        return Task(parts[0].trimmed(), parts[1].trimmed());
     }
-    return Task("", "");
+    return Task("", ""); // Возвращаем пустую задачу при ошибке
 }
