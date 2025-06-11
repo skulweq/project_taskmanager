@@ -113,6 +113,16 @@ QPushButton::pressed {
       <height>411</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QListWidget {
+	color: white;
+}</string>
+    </property>
    </widget>
   </widget>
  </widget>
