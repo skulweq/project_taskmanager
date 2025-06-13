@@ -34,58 +34,48 @@ void MainWindow2::on_pushButton_2_clicked() {
 
 
 void MainWindow2::handleTaskCreated(const QString &title, const QString &description) {
-    qDebug() << "Получена новая задача:" << title;
+    qDebug() << "Добавление новой задачи...";
 
     Task newTask(title, description);
-    m_tasks.append(newTask);  // Добавляем в список
+    m_tasks.append(newTask);
 
-    qDebug() << "Всего задач в памяти:" << m_tasks.size();
+    // Сохраняем ВЕСЬ список задач (перезаписываем файл)
+    saveAllTasks();
 
-    // Сохраняем ТОЛЬКО новую задачу
-    QFile file("task2.txt");
-    if (file.open(QIODevice::Append | QIODevice::Text)) {
-        qDebug() << "Файл открыт для записи";
-        QTextStream out(&file);
-        out << newTask.toString() << "\n";
-        file.close();
-        qDebug() << "Задача сохранена";
-    } else {
-        qDebug() << "Ошибка сохранения:" << file.errorString();
-    }
-
-    displayTasks();  // Обновляем интерфейс
+    displayTasks();
 }
 
-void MainWindow2::loadTasks()
-{
-    qDebug() << "Загрузка задач...";
-    QString filePath = ("task2.txt");
-    qDebug() << "Путь к файлу:" << QFileInfo(filePath).absoluteFilePath();
+void MainWindow2::saveAllTasks() {
+    QFile file("task2.txt");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        for (const Task &task : m_tasks) {
+            out << task.toString() << "\n";
+        }
+        file.close();
+        qDebug() << "Все задачи сохранены (" << m_tasks.size() << "шт)";
+    }
+}
 
-    QFile file(filePath);
-    if (!file.exists()) {
-        qDebug() << "Файл не существует!";
+void MainWindow2::loadTasks() {
+    m_tasks.clear();
+
+    QFile file("task2.txt");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Файл не существует или недоступен";
         return;
     }
 
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-        qDebug() << "Содержимое файла:";
-        while (!in.atEnd()) {
-            QString line = in.readLine().trimmed();
-            qDebug() << line;
-            if (!line.isEmpty()) {
-                Task task = Task::fromString(line);
-                if (!task.getTitle().isEmpty()) {
-                    m_tasks.append(task);
-                }
-            }
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        Task task = Task::fromString(in.readLine());
+        if (!task.getTitle().isEmpty()) {
+            m_tasks.append(task);
         }
-        file.close();
-    } else {
-        qDebug() << "Ошибка открытия:" << file.errorString();
     }
-    qDebug() << "Всего загружено задач:" << m_tasks.size();
+    file.close();
+
+    qDebug() << "Загружено задач:" << m_tasks.size();
 }
 
 void MainWindow2::saveTasks() {
