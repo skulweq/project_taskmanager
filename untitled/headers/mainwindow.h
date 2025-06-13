@@ -32,3 +32,4 @@ private:
     registration *registration;
 };
 #endif // MAINWINDOW_H
+
