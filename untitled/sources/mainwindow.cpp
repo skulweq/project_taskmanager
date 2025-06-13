@@ -40,4 +40,3 @@ void MainWindow::on_pushButton_2_clicked()
     this->hide();
 }
 
-
