@@ -21,6 +21,7 @@ public:
     void loadTasks();
     void saveTasks();
     void displayTasks();
+    void saveAllTasks();
 
 
 private slots:
@@ -36,3 +37,4 @@ private:
 };
 
 #endif // MAINWINDOW2_H
+
