@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW2_H
 #define MAINWINDOW2_H
 
+#include "qlistwidget.h"
 #include "task.h"
 #include <QMainWindow>
 
@@ -28,13 +29,17 @@ private slots:
     void on_pushButton_2_clicked();
     void handleTaskCreated(const QString &title, const QString &description);
 
+    void onDeleteButtonClicked();  // Новый слот для удаления
+    void onTaskSelected(QListWidgetItem* item);  // Для выделения задач
+
 private:
     Ui::MainWindow2 *ui;
     Form *form = nullptr;
     QList<Task> m_tasks;
     QString m_tasksFile = "task2.txt";
 
+    int m_currentSelectedRow = -1;
+
 };
 
 #endif // MAINWINDOW2_H
-
