@@ -34,3 +34,4 @@ void Form::on_pushButton_clicked()
     mainwindow2->show();
     this->hide(); // Или close(), но тогда нужно изменить логику
 }
+
