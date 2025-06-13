@@ -6,8 +6,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
     ui(new Ui::MainWindow),
-    mainwindow2(nullptr),
-    registration(nullptr)
+    mainwindow2(nullptr)
 {
     ui->setupUi(this);
 }
@@ -15,7 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    if (registration) delete registration;
     if (mainwindow2) delete mainwindow2;
 
 
@@ -31,12 +29,4 @@ void MainWindow::on_pushButton_clicked()
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    if (!registration) {
-        registration = new class registration(this);
-    }
-    registration->show();
-    this->hide();
-}
 
