@@ -17,7 +17,7 @@
    <string notr="true">background-color: #252525;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="deleteButton">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -43,7 +43,7 @@ QPushButton::pressed {
 }</string>
     </property>
     <property name="text">
-     <string>фильтр</string>
+     <string>удалить</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_2">
@@ -73,35 +73,6 @@ QPushButton::pressed {
     </property>
     <property name="text">
      <string>создать задачу</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_3">
-    <property name="geometry">
-     <rect>
-      <x>670</x>
-      <y>50</y>
-      <width>81</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-	border: #383838;
-	color: white;
-	background-color: #333333;
-}
-
-QPushButton::pressed {
-	background-color: #424242;
-}</string>
-    </property>
-    <property name="text">
-     <string>меню</string>
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget">
