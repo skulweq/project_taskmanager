@@ -8,13 +8,27 @@ QString Task::getTitle() const { return m_title; }
 QString Task::getDescription() const { return m_description; }
 
 QString Task::toString() const {
-    return m_title + "|" + m_description;
+    return QString("%1|%2|%3")
+    .arg(m_title)
+        .arg(m_description)
+        .arg(m_completed ? "1" : "0");
 }
 
 Task Task::fromString(const QString &str) {
     QStringList parts = str.split("|");
-    if (parts.size() >= 2) {
-        return Task(parts[0].trimmed(), parts[1].trimmed());
+    if (parts.size() >= 3) {
+        Task task(parts[0], parts[1]);
+        task.setCompleted(parts[2] == "1");
+        return task;
     }
-    return Task("", ""); // Возвращаем пустую задачу при ошибке
+    return Task("", "");
 }
+
+bool Task::isCompleted() const {
+    return m_completed;
+}
+
+void Task::setCompleted(bool completed) {
+    m_completed = completed;
+}
+
