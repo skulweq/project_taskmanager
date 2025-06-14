@@ -1,5 +1,3 @@
-# project_teamwork
-
 # Task Manager Application
 
 Простое приложение для управления задачами с возможностью:
