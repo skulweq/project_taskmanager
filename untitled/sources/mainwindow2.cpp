@@ -6,12 +6,15 @@
 #include <QDir>
 #include <QTextStream>
 #include "task2.txt"
+#include <QFont>
 
 MainWindow2::MainWindow2(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow2),
     form(nullptr)
 {
+
+
     ui->setupUi(this);
 
     connect(ui->deleteButton, &QPushButton::clicked,
@@ -20,6 +23,9 @@ MainWindow2::MainWindow2(QWidget *parent)
     // Подключаем выбор элемента
     connect(ui->listWidget, &QListWidget::itemClicked,
             this, &MainWindow2::onTaskSelected);
+
+    connect(ui->listWidget, &QListWidget::itemClicked,
+            this, &MainWindow2::toggleTaskStatus);
 
     loadTasks();
     displayTasks();
@@ -42,6 +48,30 @@ MainWindow2::MainWindow2(QWidget *parent)
         "   background: rgba(255, 255, 255, 80);"
         "}"
         );
+}
+
+void MainWindow2::toggleTaskStatus(QListWidgetItem* item)
+{
+    if (!item) {
+        qDebug() << "Invalid item pointer";
+        return;
+    }
+
+    // Получаем индекс задачи
+    int row = ui->listWidget->row(item);
+    if (row < 0 || row >= m_tasks.size()) {
+        qDebug() << "Invalid row index:" << row;
+        return;
+    }
+
+    // Изменяем статус напрямую в списке задач
+    m_tasks[row].setCompleted(!m_tasks[row].isCompleted());
+
+    // Сохраняем и обновляем
+    saveAllTasks();
+    displayTasks();
+
+    qDebug() << "Task status toggled. New status:" << m_tasks[row].isCompleted();
 }
 
 // Новый метод для удаления
@@ -171,15 +201,21 @@ void MainWindow2::displayTasks()
     }
 
     for (const Task &task : m_tasks) {
-        QListWidgetItem *item = new QListWidgetItem(
-            QString("%1\n%2").arg(task.getTitle()).arg(task.getDescription()));
+        QListWidgetItem *item = new QListWidgetItem();
 
-        // Сохраняем ссылку на задачу
+        QString prefix = task.isCompleted() ? "✓ " : "";
+        item->setText(prefix + task.getTitle());
+
+        if (task.isCompleted()) {
+            item->setForeground(Qt::gray);
+
+            // Правильный способ установки зачеркнутого шрифта:
+            QFont font = item->font();  // Получаем текущий шрифт
+            font.setStrikeOut(true);    // Модифицируем его
+            item->setFont(font);        // Устанавливаем обратно
+        }
+
         item->setData(Qt::UserRole, QVariant::fromValue(task));
-
-        // Устанавливаем подсказку с описанием
-        item->setToolTip(task.getDescription());
-
         ui->listWidget->addItem(item);
     }
 }
