@@ -32,6 +32,8 @@ private slots:
     void onDeleteButtonClicked();  // Новый слот для удаления
     void onTaskSelected(QListWidgetItem* item);  // Для выделения задач
 
+    void toggleTaskStatus(QListWidgetItem* item);  // Новый слот для переключения статуса
+
 private:
     Ui::MainWindow2 *ui;
     Form *form = nullptr;
