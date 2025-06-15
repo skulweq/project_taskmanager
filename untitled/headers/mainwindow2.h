@@ -23,6 +23,8 @@ public:
     void saveTasks();
     void displayTasks();
     void saveAllTasks();
+    void filterOverdueTasks();
+    void displayFilteredTasks(const QList<Task>& tasks);
 
 
 private slots:
@@ -33,6 +35,9 @@ private slots:
     void onTaskSelected(QListWidgetItem* item);  // Для выделения задач
 
     void toggleTaskStatus(QListWidgetItem* item);  // Новый слот для переключения статуса
+
+    void sortTasksByAlphabet();
+    void sortTasksByDate();
 
 private:
     Ui::MainWindow2 *ui;
