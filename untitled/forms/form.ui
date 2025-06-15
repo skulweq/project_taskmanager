@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>574</width>
-    <height>448</height>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,10 +19,10 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>360</y>
-     <width>141</width>
-     <height>41</height>
+     <x>200</x>
+     <y>460</y>
+     <width>161</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
@@ -139,7 +139,7 @@ QPushButton::pressed {
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>250</y>
+     <y>350</y>
      <width>71</width>
      <height>21</height>
     </rect>
@@ -162,7 +162,7 @@ QPushButton::pressed {
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>270</y>
+     <y>370</y>
      <width>271</width>
      <height>51</height>
     </rect>
@@ -174,8 +174,56 @@ QPushButton::pressed {
    </property>
    <property name="styleSheet">
     <string notr="true">QDateEdit {
+	border: #383838;
+	color: white;
+	background-color: #333333;
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>250</y>
+     <width>71</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel {
 	color: white;
 }</string>
+   </property>
+   <property name="text">
+    <string>категория</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="categoryComboBox">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>270</y>
+     <width>271</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox {
+	color: white !important;
+	border: #383838;
+	background-color: #333333;
+}</string>
+   </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
+   <property name="currentIndex">
+    <number>-1</number>
    </property>
   </widget>
  </widget>
