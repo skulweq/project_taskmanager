@@ -20,7 +20,7 @@
    <widget class="QPushButton" name="deleteButton">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>50</x>
       <y>50</y>
       <width>101</width>
       <height>51</height>
@@ -49,7 +49,7 @@ QPushButton::pressed {
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>170</x>
       <y>50</y>
       <width>151</width>
       <height>51</height>
@@ -93,6 +93,64 @@ QPushButton::pressed {
      <string notr="true">QListWidget {
 	color: white;
 }</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sortAlphabetButton">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>40</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: #383838;
+	color: white;
+	background-color: #333333;
+}
+
+QPushButton::pressed {
+	background-color: #424242;
+}</string>
+    </property>
+    <property name="text">
+     <string>фильтр по алфавиту</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sortDateButton">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>40</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: #383838;
+	color: white;
+	background-color: #333333;
+}
+
+QPushButton::pressed {
+	background-color: #424242;
+}</string>
+    </property>
+    <property name="text">
+     <string>фильтр по дате</string>
     </property>
    </widget>
   </widget>
