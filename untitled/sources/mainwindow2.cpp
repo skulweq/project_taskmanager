@@ -126,15 +126,19 @@ void MainWindow2::onTaskSelected(QListWidgetItem* item)
     }
 }
 
-void MainWindow2::saveAllTasks()
-{
+void MainWindow2::saveAllTasks() {
     QFile file("task2.txt");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (file.open(QIODevice::WriteOnly)) {
         QTextStream out(&file);
+        QSet<QString> uniqueTasks; // Для проверки уникальности
+
         for (const Task &task : m_tasks) {
-            out << task.toString() << "\n";
+            QString taskStr = task.toString();
+            if (!uniqueTasks.contains(taskStr)) {
+                out << taskStr << "\n";
+                uniqueTasks.insert(taskStr);
+            }
         }
-        file.close();
     }
 }
 
