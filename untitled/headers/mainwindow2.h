@@ -27,7 +27,7 @@ public:
 
 private slots:
     void on_pushButton_2_clicked();
-    void handleTaskCreated(const QString &title, const QString &description);
+    void handleTaskCreated(const QString &title, const QString &description, const QDate &dueDate);
 
     void onDeleteButtonClicked();  // Новый слот для удаления
     void onTaskSelected(QListWidgetItem* item);  // Для выделения задач
