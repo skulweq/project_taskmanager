@@ -240,6 +240,9 @@ void MainWindow2::displayTasks()
         }
         else if (task.dueDate().isValid() && task.dueDate() < QDate::currentDate()) {
             item->setForeground(Qt::red);
+        } else if (task.dueDate() == QDate::currentDate()) {
+            // Желтый цвет для задач на сегодня
+            item->setForeground(QColor(255, 165, 0)); // Оранжево-желтый
         }
 
         ui->listWidget->addItem(item);
