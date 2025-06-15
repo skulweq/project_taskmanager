@@ -27,6 +27,12 @@ MainWindow2::MainWindow2(QWidget *parent)
     connect(ui->listWidget, &QListWidget::itemClicked,
             this, &MainWindow2::toggleTaskStatus);
 
+    connect(ui->sortAlphabetButton, &QPushButton::clicked,
+            this, &MainWindow2::sortTasksByAlphabet);
+
+    connect(ui->sortDateButton, &QPushButton::clicked,
+            this, &MainWindow2::sortTasksByDate);
+
     loadTasks();
     displayTasks();
 
@@ -222,6 +228,7 @@ void MainWindow2::displayTasks()
 
         // Стилизация
         if (task.isCompleted()) {
+            dueText = "✓ " + dueText;
             item->setForeground(Qt::gray);
             QFont font = item->font();
             font.setStrikeOut(true);
@@ -233,4 +240,27 @@ void MainWindow2::displayTasks()
 
         ui->listWidget->addItem(item);
     }
+}
+
+
+void MainWindow2::sortTasksByAlphabet() {
+    // Сортировка без учета регистра
+    std::sort(m_tasks.begin(), m_tasks.end(), [](const Task& a, const Task& b) {
+        return a.getTitle().compare(b.getTitle(), Qt::CaseInsensitive) < 0;
+    });
+    displayTasks();
+}
+
+void MainWindow2::sortTasksByDate() {
+    // Сначала задачи с датой, затем без, внутри групп - по алфавиту
+    std::sort(m_tasks.begin(), m_tasks.end(), [](const Task& a, const Task& b) {
+        if (a.dueDate().isValid() && b.dueDate().isValid()) {
+            if (a.dueDate() == b.dueDate()) {
+                return a.getTitle() < b.getTitle();
+            }
+            return a.dueDate() < b.dueDate();
+        }
+        return a.dueDate().isValid() && !b.dueDate().isValid();
+    });
+    displayTasks();
 }
