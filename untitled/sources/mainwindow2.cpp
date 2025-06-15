@@ -47,6 +47,11 @@ MainWindow2::MainWindow2(QWidget *parent)
         "QListWidget::item:selected {"
         "   background: rgba(255, 255, 255, 80);"
         "}"
+        "QToolTip {"
+        "   color: white;"
+        "   background-color: #333333;"
+        "   border: 1px solid #555555;"
+        "}"
         );
 }
 
@@ -143,10 +148,12 @@ void MainWindow2::on_pushButton_2_clicked() {
 }
 
 
-void MainWindow2::handleTaskCreated(const QString &title, const QString &description) {
+void MainWindow2::handleTaskCreated(const QString &title, const QString &description, const QDate &dueDate) {
     qDebug() << "Добавление новой задачи...";
 
     Task newTask(title, description);
+    newTask.setDueDate(dueDate);
+
     m_tasks.append(newTask);
 
     // Сохраняем ВЕСЬ список задач (перезаписываем файл)
@@ -190,32 +197,40 @@ void MainWindow2::saveTasks() {
 
 void MainWindow2::displayTasks()
 {
-    qDebug() << "Отображение задач. Всего:" << m_tasks.size();
-
     ui->listWidget->clear();
 
     if (m_tasks.isEmpty()) {
-        qDebug() << "Список задач пуст!";
-        ui->listWidget->addItem("Список задач пуст"); // Временная заглушка
+        ui->listWidget->addItem("Список задач пуст");
         return;
     }
 
     for (const Task &task : m_tasks) {
         QListWidgetItem *item = new QListWidgetItem();
 
-        QString prefix = task.isCompleted() ? "✓ " : "";
-        item->setText(prefix + task.getTitle());
+        // Формируем текст с названием и сроком
+        QString status = task.isCompleted() ? "✓ " : "";
+        QString dueText = task.dueDate().isValid()
+                              ? " (до " + task.dueDate().toString("dd.MM.yyyy") + ")"
+                              : "";
 
+        item->setText(status + task.getTitle() + dueText);
+
+        // Устанавливаем описание в подсказку
+        item->setToolTip(task.getDescription().isEmpty()
+                             ? "Нет описания"
+                             : task.getDescription());
+
+        // Стилизация
         if (task.isCompleted()) {
             item->setForeground(Qt::gray);
-
-            // Правильный способ установки зачеркнутого шрифта:
-            QFont font = item->font();  // Получаем текущий шрифт
-            font.setStrikeOut(true);    // Модифицируем его
-            item->setFont(font);        // Устанавливаем обратно
+            QFont font = item->font();
+            font.setStrikeOut(true);
+            item->setFont(font);
+        }
+        else if (task.dueDate().isValid() && task.dueDate() < QDate::currentDate()) {
+            item->setForeground(Qt::red);
         }
 
-        item->setData(Qt::UserRole, QVariant::fromValue(task));
         ui->listWidget->addItem(item);
     }
 }
