@@ -6,7 +6,7 @@
 
 class Task {
 public:
-    Task(const QString &title, const QString &description);
+    Task(const QString &title, const QString &description, const QString& category = "");
 
     QString getTitle() const;
     QString getDescription() const;
@@ -20,6 +20,9 @@ public:
     QDate dueDate() const;
     void setDueDate(const QDate &date);
 
+    void setCategory(const QString& category);
+    QString category() const;
+
 
 
 private:
@@ -29,6 +32,8 @@ private:
     bool m_completed = false;
 
     QDate m_dueDate;
+
+    QString m_category;
 };
 
 #endif // TASK_H
