@@ -10,8 +10,8 @@
 
 MainWindow2::MainWindow2(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow2),
-    form(nullptr)
+    , ui(new Ui::MainWindow2)
+    , form(new Form(this))
 {
 
 
@@ -32,6 +32,8 @@ MainWindow2::MainWindow2(QWidget *parent)
 
     connect(ui->sortDateButton, &QPushButton::clicked,
             this, &MainWindow2::sortTasksByDate);
+
+    connect(form, &Form::taskCreated, this, &MainWindow2::handleTaskCreated);
 
     loadTasks();
     displayTasks();
@@ -161,7 +163,11 @@ void MainWindow2::on_pushButton_2_clicked() {
 void MainWindow2::handleTaskCreated(const QString &title, const QString &description, const QDate &dueDate) {
     qDebug() << "Добавление новой задачи...";
 
-    Task newTask(title, description);
+    QString category = form->getSelectedCategory();
+
+    qDebug() << "Выбранная категория:" << category;
+
+    Task newTask(title, description, category);
     newTask.setDueDate(dueDate);
 
     m_tasks.append(newTask);
@@ -219,11 +225,14 @@ void MainWindow2::displayTasks()
 
         // Формируем текст с названием и сроком
         QString status = task.isCompleted() ? "✓ " : "";
+        QString categoryText = !task.category().isEmpty()
+                                   ? " [" + task.category() + "]"
+                                   : "";
         QString dueText = task.dueDate().isValid()
                               ? " (до " + task.dueDate().toString("dd.MM.yyyy") + ")"
                               : "";
 
-        item->setText(status + task.getTitle() + dueText);
+        item->setText(status + task.getTitle() + categoryText + dueText);
 
         // Устанавливаем описание в подсказку
         item->setToolTip(task.getDescription().isEmpty()
