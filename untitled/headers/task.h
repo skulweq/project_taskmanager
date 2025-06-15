@@ -2,6 +2,7 @@
 #define TASK_H
 
 #include <QString>
+#include <QDate>
 
 class Task {
 public:
@@ -16,12 +17,18 @@ public:
     bool isCompleted() const;
     void setCompleted(bool completed);
 
+    QDate dueDate() const;
+    void setDueDate(const QDate &date);
+
+
 
 private:
     QString m_title;
     QString m_description;
 
     bool m_completed = false;
+
+    QDate m_dueDate;
 };
 
 #endif // TASK_H
