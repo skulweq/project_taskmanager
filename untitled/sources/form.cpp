@@ -3,8 +3,8 @@
 #include "profile.h"
 #include "mainwindow2.h"
 
-                                        Form::Form(QWidget *parent)
-                                                                                : QWidget(parent),
+Form::Form(QWidget *parent)
+    : QWidget(parent),
     ui(new Ui::Form),
     mainwindow2(nullptr)
 {
@@ -14,6 +14,14 @@
     // Можно также установить текущую дату по умолчанию
     ui->dateEdit->setDate(QDate::currentDate());
     connect(ui->pushButton, &QPushButton::clicked, this, &Form::on_pushButton_clicked);
+
+    ui->categoryComboBox->addItem("#работа");
+    ui->categoryComboBox->addItem("#личное");
+    ui->categoryComboBox->addItem("Без категории");
+
+    ui->categoryComboBox->setStyleSheet(
+        "QComboBox { padding: 3px; border-radius: 4px; }"
+        );
 }
 
 Form::~Form()
@@ -22,11 +30,16 @@ Form::~Form()
     delete mainwindow2;
 }
 
+QString Form::getSelectedCategory() const {
+    return ui->categoryComboBox->currentText();
+}
+
 void Form::on_pushButton_clicked()
 {
     QString title = ui->lineEdit->text();
     QString description = ui->textEdit->toPlainText();
     QDate dueDate = ui->dateEdit->date();
+    QString category = ui->categoryComboBox->currentText();
 
     if (!title.isEmpty()) {
         emit taskCreated(title, description, dueDate);
@@ -43,6 +56,3 @@ void Form::on_pushButton_clicked()
 QDate Form::dueDate() const {
     return ui->dateEdit->date();
 }
-
-
-
