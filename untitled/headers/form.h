@@ -16,9 +16,10 @@ class Form : public QWidget
 public:
     explicit Form(QWidget *parent = nullptr);
     ~Form();
+    QDate dueDate() const;
 
 signals:
-    void taskCreated(const QString &title, const QString &description);
+    void taskCreated(const QString &title, const QString &description, const QDate &dueDate);
 
 private slots:
     void on_pushButton_clicked();
