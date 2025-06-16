@@ -20,7 +20,21 @@ Form::Form(QWidget *parent)
     ui->categoryComboBox->addItem("Без категории");
 
     ui->categoryComboBox->setStyleSheet(
-        "QComboBox { padding: 3px; border-radius: 4px; }"
+        "QComboBox {"
+        "   color: white;"
+        "   background-color: #333333;"
+        "   selection-color: white;"
+        "   selection-background-color: #555555;"
+        "   padding: 3px 5px;"
+        "   border: #383838;"
+        "}"
+        "QComboBox::drop-down {"
+        "   subcontrol-origin: padding;"
+        "   subcontrol-position: top right;"
+        "   width: 15px;"
+        "   border-left: 1px solid #444444;"
+        "   color: white;"
+        "}"
         );
 }
 
@@ -42,7 +56,7 @@ void Form::on_pushButton_clicked()
     QString category = ui->categoryComboBox->currentText();
 
     if (!title.isEmpty()) {
-        emit taskCreated(title, description, dueDate);
+        emit taskCreated(title, description, category, dueDate);
         this->close();
     }
 
