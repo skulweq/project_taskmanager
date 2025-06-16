@@ -21,7 +21,8 @@ public:
     QString getSelectedCategory() const;
 
 signals:
-    void taskCreated(const QString &title, const QString &description, const QDate &dueDate);
+    void taskCreated(const QString &title, const QString &description,
+                     const QString& category, const QDate &dueDate);
 
 private slots:
     void on_pushButton_clicked();
