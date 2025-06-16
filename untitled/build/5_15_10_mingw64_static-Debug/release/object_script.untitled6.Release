@@ -1,0 +1,13 @@
+release/databasemanager.o
+release/form.o
+release/main.o
+release/mainwindow.o
+release/mainwindow2.o
+release/profile.o
+release/registration.o
+release/task.o
+release/moc_form.o
+release/moc_mainwindow.o
+release/moc_mainwindow2.o
+release/moc_profile.o
+release/moc_registration.o
