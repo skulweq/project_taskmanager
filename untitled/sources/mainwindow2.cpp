@@ -160,10 +160,10 @@ void MainWindow2::on_pushButton_2_clicked() {
 }
 
 
-void MainWindow2::handleTaskCreated(const QString &title, const QString &description, const QDate &dueDate) {
+void MainWindow2::handleTaskCreated(const QString &title, const QString &description, const QString &category, const QDate &dueDate) {
     qDebug() << "Добавление новой задачи...";
 
-    QString category = form->getSelectedCategory();
+    //QString category = form->getSelectedCategory();
 
     qDebug() << "Выбранная категория:" << category;
 
