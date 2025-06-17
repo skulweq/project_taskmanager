@@ -35,6 +35,11 @@ MainWindow2::MainWindow2(QWidget *parent)
 
     connect(form, &Form::taskCreated, this, &MainWindow2::handleTaskCreated);
 
+
+    connect(ui->filterWorkButton, &QPushButton::clicked, this, &MainWindow2::filterByWork);
+    connect(ui->filterPersonalButton, &QPushButton::clicked, this, &MainWindow2::filterByPersonal);
+    connect(ui->filterNoCategoryButton, &QPushButton::clicked, this, &MainWindow2::filterByNoCategory);
+
     loadTasks();
     displayTasks();
 
@@ -201,7 +206,7 @@ void MainWindow2::loadTasks() {
 
 void MainWindow2::saveTasks() {
     QFile file("task2.txt");
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {  // Затираем файл
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&file);
         for (const Task &task : m_tasks) {
             out << task.toString() << "\n";
@@ -280,3 +285,61 @@ void MainWindow2::sortTasksByDate() {
     });
     displayTasks();
 }
+
+
+
+
+void MainWindow2::filterByWork() {
+    applyFilter("#работа");
+}
+
+void MainWindow2::filterByPersonal() {
+    applyFilter("#личное");
+}
+
+void MainWindow2::filterByNoCategory() {
+    applyFilter("Без категории");
+}
+
+void MainWindow2::applyFilter(const QString& categoryFilter) {
+
+    ui->listWidget->clear();
+
+    for (const Task &task : m_tasks) {
+        if (task.category() == categoryFilter) {
+            QListWidgetItem *item = new QListWidgetItem();
+
+            QString status = task.isCompleted() ? "✓ " : "";
+            QString categoryText = !task.category().isEmpty()
+                                       ? " [" + task.category() + "]"
+                                       : "";
+            QString dueText = task.dueDate().isValid()
+                                  ? " (до " + task.dueDate().toString("dd.MM.yyyy") + ")"
+                                  : "";
+
+            item->setText(status + task.getTitle() + categoryText + dueText);
+            item->setToolTip(task.getDescription().isEmpty()
+                                 ? "Нет описания"
+                                 : task.getDescription());
+
+            if (task.isCompleted()) {
+                item->setForeground(Qt::gray);
+                QFont font = item->font();
+                font.setStrikeOut(true);
+                item->setFont(font);
+            }
+            else if (task.dueDate().isValid() && task.dueDate() < QDate::currentDate()) {
+                item->setForeground(Qt::red);
+            } else if (task.dueDate() == QDate::currentDate()) {
+                item->setForeground(QColor(255, 165, 0));
+            }
+
+            ui->listWidget->addItem(item);
+        }
+    }
+
+    if (ui->listWidget->count() == 0) {
+        ui->listWidget->addItem("Нет задач в этой категории");
+    }
+}
+
