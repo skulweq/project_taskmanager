@@ -40,6 +40,10 @@ private slots:
     void sortTasksByAlphabet();
     void sortTasksByDate();
 
+    void filterByWork();
+    void filterByPersonal();
+    void filterByNoCategory();
+
 private:
     Ui::MainWindow2 *ui;
     Form *form = nullptr;
@@ -47,6 +51,8 @@ private:
     QString m_tasksFile = "task2.txt";
 
     int m_currentSelectedRow = -1;
+
+    void applyFilter(const QString& categoryFilter);
 
 };
 
