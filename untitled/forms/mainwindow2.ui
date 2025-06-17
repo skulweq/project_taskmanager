@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>742</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,8 +21,8 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>50</y>
-      <width>101</width>
+      <y>160</y>
+      <width>91</width>
       <height>51</height>
      </rect>
     </property>
@@ -35,7 +35,7 @@
      <string notr="true">QPushButton {
 	border: #383838;
 	color: white;
-	background-color: #333333;
+	background-color: #CC0000;
 }
 
 QPushButton::pressed {
@@ -50,8 +50,8 @@ QPushButton::pressed {
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>50</y>
-      <width>151</width>
+      <y>160</y>
+      <width>161</width>
       <height>51</height>
      </rect>
     </property>
@@ -64,7 +64,7 @@ QPushButton::pressed {
      <string notr="true">QPushButton {
 	border: #383838;
 	color: white;
-	background-color: #333333;
+	background-color: #00BB00;
 }
 
 QPushButton::pressed {
@@ -78,10 +78,10 @@ QPushButton::pressed {
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>140</y>
-      <width>711</width>
-      <height>411</height>
+      <x>40</x>
+      <y>240</y>
+      <width>721</width>
+      <height>481</height>
      </rect>
     </property>
     <property name="font">
@@ -98,7 +98,7 @@ QPushButton::pressed {
    <widget class="QPushButton" name="sortAlphabetButton">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>420</x>
       <y>40</y>
       <width>161</width>
       <height>71</height>
@@ -127,7 +127,7 @@ QPushButton::pressed {
    <widget class="QPushButton" name="sortDateButton">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>610</x>
       <y>40</y>
       <width>161</width>
       <height>71</height>
@@ -151,6 +151,93 @@ QPushButton::pressed {
     </property>
     <property name="text">
      <string>фильтр по дате</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filterWorkButton">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>130</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: #383838;
+	color: white;
+	background-color: #333333;
+}
+
+QPushButton::pressed {
+	background-color: #424242;
+}</string>
+    </property>
+    <property name="text">
+     <string>фильтр по #работа</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filterPersonalButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>130</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: #383838;
+	color: white;
+	background-color: #333333;
+}
+
+QPushButton::pressed {
+	background-color: #424242;
+}</string>
+    </property>
+    <property name="text">
+     <string>фильтр по #личное</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="filterNoCategoryButton">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>40</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border: #383838;
+	color: white;
+	background-color: #333333;
+}
+
+QPushButton::pressed {
+	background-color: #424242;
+}</string>
+    </property>
+    <property name="text">
+     <string>фильтр по &quot;Без категории&quot;</string>
     </property>
    </widget>
   </widget>
