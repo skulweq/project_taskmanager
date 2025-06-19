@@ -47,6 +47,4 @@
    - Компилятор C++ (g++, MSVC, Clang)
 
 
-документация - [BPM-24-1.ZAKIRIANOV.EMIL.docx](https://github.com/user-attachments/files/20758348/BPM-24-1.ZAKIRIANOV.EMIL.docx)
-
-
+документация - [BPM-24-1.ZAKIRIANOV.EMIL.docx](https://github.com/user-attachments/files/20821555/BPM-24-1.ZAKIRIANOV.EMIL.docx)
