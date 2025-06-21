@@ -48,6 +48,3 @@
 **Требования**:
    - Qt 6.5+
    - Компилятор C++ (g++, MSVC, Clang)
-
-
-документация - [BPM-24-1.ZAKIRIANOV.EMIL.docx](https://github.com/user-attachments/files/20821555/BPM-24-1.ZAKIRIANOV.EMIL.docx)
